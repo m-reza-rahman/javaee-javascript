@@ -9,8 +9,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
         <script type="text/javascript">
-            var principal = '${pageContext.request.userPrincipal.name}';
-        </script>
+                    var principal = '${pageContext.request.userPrincipal.name}';        </script>
         <script src="javascript/todo/controllers.js"></script>
         <script src="javascript/todo/services.js"></script>
         <script src="javascript/todo/directives.js"></script>
