@@ -55,12 +55,12 @@ public class ChatMessage
         implements Decoder.Text<ChatMessage>, Encoder.Text<ChatMessage> {
 
     @NotNull
-    @Size(min = 1, max = 42,
-            message = "User must be between 1 and 42 characters")
+    @Size(min = 4, max = 14,
+            message = "User name must be between 4 and 14 characters.")
     private String user;
     @NotNull
-    @Size(min = 1, max = 255,
-            message = "Message must be between 1 and 255 characters")
+    @Size(min = 2, max = 255,
+            message = "Message must be between 2 and 255 characters.")
     private String message;
 
     @Override

@@ -1,9 +1,9 @@
- 'use strict';
+'use strict';
 
 var todoControllers = angular.module('todoControllers', []);
 
-todoControllers.controller('ToDoController', ['$scope', 'ToDo',
-    function($scope, ToDo) {
+todoControllers.controller('ToDoController', ['$scope', '$window', 'ToDo',
+    function($scope, $window, ToDo) {
         $scope.user = principal;
         $scope.newToDoDescription = '';
         $scope.itemToEdit = null;
@@ -12,10 +12,16 @@ todoControllers.controller('ToDoController', ['$scope', 'ToDo',
 
         $scope.addItem = function() {
             var item = new ToDo({description: $scope.newToDoDescription});
-            item.$save(function(data) {
-                $scope.items.push(data);
-            });
-            $scope.newToDoDescription = '';
+            item.$save(
+                    function(data) {
+                        // Success.
+                        $scope.items.push(data);
+                        $scope.newToDoDescription = '';
+                    },
+                    function(error) {
+                        // Error.
+                        $window.alert(error.data.pop().message);
+                    });
         };
 
         $scope.editItem = function(item) {
@@ -24,8 +30,15 @@ todoControllers.controller('ToDoController', ['$scope', 'ToDo',
         };
 
         $scope.commitEditItem = function(item) {
-            ToDo.update(item);
-            $scope.itemToEdit = null;
+            item.$update(
+                    function() {
+                        // Success.
+                        $scope.itemToEdit = null;
+                    },
+                    function(error) {
+                        // Error.
+                        $window.alert(error.data.pop().message);
+                    });
         };
 
         $scope.revertEditing = function(item) {

@@ -59,6 +59,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class ToDoItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue
     private Long id;
@@ -66,7 +67,8 @@ public class ToDoItem implements Serializable {
     private String username;
 
     @NotNull
-    @Size(min = 5, max = 110)
+    @Size(min = 5, max = 110,
+            message = "Item description must be between 5 and 110 characters.")
     private String description;
 
     private boolean completed;

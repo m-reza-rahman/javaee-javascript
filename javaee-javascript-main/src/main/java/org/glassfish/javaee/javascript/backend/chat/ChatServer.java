@@ -62,9 +62,6 @@ import javax.websocket.server.ServerEndpoint;
 @Singleton
 public class ChatServer {
 
-    /**
-     * Logger
-     */
     private static final Logger logger = Logger
             .getLogger(ChatServer.class.getName());
 

@@ -71,7 +71,7 @@ public class ToDoResource implements Serializable {
     public ToDoItem create(
             @PathParam("username")
             @NotNull
-            @Size(min = 4, max = 14) String username,
+            @Size(min = 4, max = 14, message = "User name must be between 4 and 14 characters.") String username,
             @Valid ToDoItem item) {
         return service.addToDoItem(username, item);
     }
@@ -82,7 +82,7 @@ public class ToDoResource implements Serializable {
     public void edit(
             @PathParam("username")
             @NotNull
-            @Size(min = 4, max = 14) String username,
+            @Size(min = 4, max = 14, message = "User name must be between 4 and 14 characters.") String username,
             @PathParam("id") Long id,
             @Valid ToDoItem item) {
         item.setId(id);
@@ -94,7 +94,7 @@ public class ToDoResource implements Serializable {
     public void remove(
             @PathParam("username")
             @NotNull
-            @Size(min = 4, max = 14) String username,
+            @Size(min = 4, max = 14, message = "User name must be between 4 and 14 characters.") String username,
             @PathParam("id") Long id) {
         service.removeToDoItem(username, id);
     }
@@ -104,7 +104,7 @@ public class ToDoResource implements Serializable {
     public List<ToDoItem> getAll(
             @PathParam("username")
             @NotNull
-            @Size(min = 4, max = 14) String username) {
+            @Size(min = 4, max = 14, message = "User name must be between 4 and 14 characters.") String username) {
         return service.findToDoItemsByUsername(username);
     }
 }

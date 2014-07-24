@@ -39,10 +39,13 @@
  */
 package org.glassfish.javaee.javascript.backend.todo;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import org.glassfish.jersey.server.ServerProperties;
 
 @ApplicationPath("resources")
 public class RestConfiguration extends Application {
@@ -52,6 +55,13 @@ public class RestConfiguration extends Application {
         Set<Class<?>> resources = new HashSet<>();
         addRestResourceClasses(resources);
         return resources;
+    }
+
+    @Override
+    public Map<String, Object> getProperties() {
+        Map<String, Object> properties = new HashMap();
+        properties.put(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
+        return properties;
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {

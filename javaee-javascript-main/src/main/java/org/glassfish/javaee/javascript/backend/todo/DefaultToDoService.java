@@ -49,9 +49,6 @@ import javax.inject.Inject;
 @Stateless
 public class DefaultToDoService implements ToDoService {
 
-    /**
-     * Logger
-     */
     private static final Logger logger = Logger
             .getLogger(DefaultToDoService.class.getName());
 

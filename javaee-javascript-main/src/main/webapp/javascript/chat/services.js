@@ -8,9 +8,15 @@ chatServices.factory('Chat', [function() {
             this.send = function(sender, value) {
                 websocket.send(JSON.stringify({user: sender, message: value}));
             };
-            this.setListener = function(listener) {
+            this.setListener = function(messageListener, errorListener) {
                 websocket.onmessage = function(message) {
-                    listener(JSON.parse(message.data));
+                    var parsedMessage = JSON.parse(message.data);
+                    
+                    if (!parsedMessage.error) {
+                        messageListener(parsedMessage);
+                    } else {
+                        errorListener(parsedMessage.error);
+                    }
                 };
             };
         };
