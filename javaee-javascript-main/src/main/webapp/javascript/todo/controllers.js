@@ -2,8 +2,8 @@
 
 var todoControllers = angular.module('todoControllers', []);
 
-todoControllers.controller('ToDoController', ['$scope', '$window', 'ToDo',
-    function($scope, $window, ToDo) {
+todoControllers.controller('ToDoController', ['$scope', 'growl', 'ToDo',
+    function($scope, growl, ToDo) {
         $scope.user = principal;
         $scope.newToDoDescription = '';
         $scope.itemToEdit = null;
@@ -20,7 +20,7 @@ todoControllers.controller('ToDoController', ['$scope', '$window', 'ToDo',
                     },
                     function(error) {
                         // Error.
-                        $window.alert(error.data.pop().message);
+                        growl.addErrorMessage(error.data.pop().message);
                     });
         };
 
@@ -37,7 +37,7 @@ todoControllers.controller('ToDoController', ['$scope', '$window', 'ToDo',
                     },
                     function(error) {
                         // Error.
-                        $window.alert(error.data.pop().message);
+                        growl.addErrorMessage(error.data.pop().message);
                     });
         };
 

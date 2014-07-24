@@ -2,8 +2,8 @@
 
 var chatControllers = angular.module('chatControllers', []);
 
-chatControllers.controller('ChatController', ['$scope', '$window', 'Chat',
-    function($scope, $window, Chat) {
+chatControllers.controller('ChatController', ['$scope', 'growl', 'Chat',
+    function($scope, growl, Chat) {
         $scope.user = principal;
         $scope.messages = [];
         $scope.newMessage = '';
@@ -11,14 +11,15 @@ chatControllers.controller('ChatController', ['$scope', '$window', 'Chat',
         Chat.setListener(
                 function(message) {
                     $scope.messages.push(message);
+                    $scope.newMessage = '';
                     $scope.$apply();
                 },
                 function(error) {
-                    $window.alert(error);
+                    growl.addErrorMessage(error);
+                    $scope.$apply();
                 });
 
         $scope.send = function() {
             Chat.send(principal, $scope.newMessage);
-            $scope.newMessage = '';
         };
     }]);
