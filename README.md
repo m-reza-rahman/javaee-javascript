@@ -44,4 +44,4 @@ asadmin create-auth-realm --classname com.sun.enterprise.security.auth.realm.jdb
 ```
 * Open and build the project
 * Run the project on GlassFish 4
-* Open up a browser and go to http://localhost:8080/javaee-javascript
+* Open up a browser and go to [http://localhost:8080/javaee-javascript](http://localhost:8080/javaee-javascript)
